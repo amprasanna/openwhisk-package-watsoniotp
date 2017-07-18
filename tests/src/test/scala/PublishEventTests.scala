@@ -17,6 +17,9 @@ class PublishEventTests
 
   // Retrieving all VCAP credentials, although currently only a few would be used
   val credentials = TestUtils.getVCAPcredentials("iotf-service");
+
+  //val appSecret = credentials.get("appSecret");
+
   val iotCredentialsIdentifier = credentials.get("iotCredentialsIdentifier");
   val mqttHost = credentials.get("mqtt_host");
   val mqttUPort = credentials.get("mqtt_u_port");
@@ -25,6 +28,9 @@ class PublishEventTests
   val org = credentials.get("org");
   val apiKey = credentials.get("apiKey");
   val apiToken = credentials.get("apiToken");
+
+  println("Token = ");
+  println(apiToken);
 
   //These values need to be passed
   val gatewayTypeId = "gatewayType";
@@ -40,7 +46,7 @@ class PublishEventTests
   behavior of "WIoTP Package"
 
     it should "Publish Event action" in {
-           val name = "/whisk.system/watsoniotplatform/publishEvent"
+           val name = "/whisk.system/watsoniotp/publishEvent"
              withActivation(wsk.activation,wsk.action.invoke(name, Map("org" -> org, "domain" -> mqttHost, "gatewayTypeId" -> gatewayTypeId, "gatewayId" -> gatewayId, "gatewayToken" -> gatewayToken, "typeId" -> typeId, "deviceId" -> deviceId, "eventType" -> eventType, "payload" -> payload))){
                  _.response.result.get.toString should include ("body")
              }
