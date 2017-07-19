@@ -17,7 +17,7 @@ The package includes the following action and feed:
 
 ##### Deploying the Package using `installCatalog.sh`
 
-1. `git clone https://github.com/openwhisk/openwhisk-package-pushnotifications`
-2. `cd openwhisk-package-pushnotifications/packages`
+1. `git clone https://github.com/ibm-watson-iot/openwhisk-package-watsoniotp`
+2. `cd openwhisk-package-watsoniotp/packages`
 3. `./installCatalog.sh AUTH APIHOST WSK_CLI`
    AUTH is your auth key.  APIHOST is the OpenWhisk hostname.  WSK_CLI is location of the Openwhisk CLI binary.
