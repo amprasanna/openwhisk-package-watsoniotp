@@ -23,7 +23,7 @@ var util = require('util');
 */
 function main(params){
 
-   var errorMsg = paramsCheck(params);
+   let errorMsg = paramsCheck(params);
    if(errorMsg) {
        return Promise.reject(errorMsg);
    }
@@ -33,20 +33,19 @@ function main(params){
    }
 
    return new Promise((resolve, reject) => {
-     var portNo =  443
-     var uri = util.format(
-   "https://%s.%s:%s/api/v0002/device/types/%s/devices/%s/events/%s",
-   params.orgId, params.domain,portNo.toString(), params.typeId, params.deviceId ,
+     let uri = util.format(
+   "https://%s.%s/api/v0002/device/types/%s/devices/%s/events/%s",
+   params.orgId, params.domain,params.typeId, params.deviceId ,
    params.eventType
    );
 
-   var postObj = {
+   let postObj = {
        headers: {
          'content-type' : 'application/json',
          'authorization' : 'Basic ' + new Buffer('g/'+params.orgId+'/'+ params.gatewayTypeId+'/'+ params.gatewayId + ':' + params.gatewayToken).toString('base64')
        },
        url: uri,
-       body: JSON.stringify(params.payload)
+       json: params.payload
      };
    //Optional values no need to validate
    if(params.cert && params.key ){
@@ -61,7 +60,7 @@ function main(params){
          if(!error){
            if(response.statusCode === 200)
            {
-             resolve({body})
+             resolve({statusCode:response.statusCode,statusMessage:response.statusMessage })
            }else{
              reject(response)
            }
