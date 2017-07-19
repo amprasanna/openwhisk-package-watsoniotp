@@ -21,13 +21,13 @@ class PublishEventTests
   //val appSecret = credentials.get("appSecret");
 
   val iotCredentialsIdentifier = credentials.get("iotCredentialsIdentifier");
-  val mqttHost = credentials.get("mqtt_host");
-  val mqttUPort = credentials.get("mqtt_u_port");
-  val mqttSPort = credentials.get("mqtt_s_port");
-  val httpHost = credentials.get("http_host");
-  val org = credentials.get("org");
-  val apiKey = credentials.get("apiKey");
-  val apiToken = credentials.get("apiToken");
+  val mqttHost = (credentials.get("mqtt_host"))toJson;
+  val mqttUPort = (credentials.get("mqtt_u_port")).toJson;
+  val mqttSPort = (credentials.get("mqtt_s_port")).toJson;
+  val httpHost = (credentials.get("http_host")).toJson;
+  val org = (credentials.get("org")).toJson;
+  val apiKey = (credentials.get("apiKey")).toJson;
+  val apiToken = (credentials.get("apiToken")).toJson;
 
   //These values, although currently obtained from JSON, would in actual practice be assigned
   //val gatewayTypeId = "gatewayType";
