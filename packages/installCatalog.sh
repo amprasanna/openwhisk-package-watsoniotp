@@ -39,11 +39,13 @@ echo Installing Watson IoT platform package.
 $WSK_CLI -i --apihost "$APIHOST"  package update --auth "$AUTH"  --shared yes "watsoniotp" \
 -a description "This is the package for Watson IoT Platform." \
 -a parameters '[ {"name":"org", "required":true, "bindTime":true, "description":"Organization ID"},
-{"name":"gatewayToken", "required":true, "bindTime":true, "type":"password", "description":"Token for the Gateway Registered in the platform"},
+{"name":"gatewayToken", "required":false, "bindTime":true, "type":"password", "description":"Token for the Gateway Registered in the platform"},
 {"name":"domain", "required":false, "bindTime":true, "description":"Domain of the messaging server"},
 {"name":"gatewayTypeId", "required":true, "bindTime":true, "description":"Gateway Type ID"},
 {"name":"gatewayId", "required":true, "bindTime":true, "description":"Gateway ID"},
-{"name":"eventType", "required":true, "bindTime":true, "description":"Type of event published"}]' \
+{"name":"eventType", "required":true, "bindTime":true, "description":"Type of event published"},
+{"name":"cert", "required":false, "bindTime":true, "description":"Gateway client certificate .pem file"},
+{"name":"key", "required":false, "bindTime":true, "description":"Key for the client certrificate"}]' \
 -a prettyName "Watson IoT Platform"
 
 $WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "watsoniotp/publishEvent" "$PACKAGE_HOME/actions/publishEvent.js" \
@@ -56,6 +58,8 @@ $WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "watsoniotp/publis
 {"name":"eventType", "required":true, "bindTime":true, "description":"Type of event published"},
 {"name":"typeId", "required":true, "description":"Type ID of the device attached"},
 {"name":"deviceId", "required":true, "description":"Device ID of the device attached"},
-{"name":"payload", "required":true, "description":"Payload of the device event"}]' \
+{"name":"payload", "required":true, "description":"Payload of the device event"},
+{"name":"cert", "required":false, "bindTime":true, "description":"Gateway client certificate .pem file"},
+{"name":"key", "required":false, "bindTime":true, "description":"Key for the client certrificate"}]' \
 -a sampleInput '{"deviceId":"xxx-xxx-xx", "typeId":"yyy-yyy-yyy", "payload":"hi there", "docId" : "xxxx-xxxx-xxxx"}' \
 -a sampleOutput '{}'

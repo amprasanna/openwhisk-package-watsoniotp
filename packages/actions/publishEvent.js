@@ -10,7 +10,7 @@ var util = require('util');
 * @param {String} [params.gatewayToken] Gateway Token
 * [For advance security]
 * @param {String} [params.cert] Gateway client certificate .pem file
-* @param {String} [params.key] Gateway key for the client certrificate
+* @param {String} [params.key]  Key for the client certrificate
 *
 * Details of the end device
 * @param {String} [params.typeId] Device Type Id
