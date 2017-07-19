@@ -34,13 +34,13 @@ class PublishEventTests
   //val gatewayId = "gatewayId";
   //val gatewayToken = "password";
 
-  val gatewayTypeId = credentials.get("gatewayType");
-  val gatewayId = credentials.get("gatewayId");
-  val gatewayToken = credentials.get("gatewayToken");
+  val gatewayTypeId = (credentials.get("gatewayType")).toJson;
+  val gatewayId = (credentials.get("gatewayId")).toJson;
+  val gatewayToken = (credentials.get("gatewayToken")).toJson;
 
-  val typeId = "deviceType";
-  val deviceId = "deviceId";
-  val eventType = "evt";
+  val typeId = "deviceType".toJson;
+  val deviceId = "deviceId".toJson;
+  val eventType = "evt".toJson;
   //val payload = ("d" -> ("temp" -> 25));
   val payload = "temp".toJson;
 
