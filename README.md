@@ -2,14 +2,14 @@
 
 # This is still in experimental mode.
 
-The `/whisk.system/watsoniotp` package enables you to send events to the IBM Watson IoT Platform on behalf of the attached devices.
+The `/watson/iot` package enables you to send events to the IBM Watson IoT Platform on behalf of the attached devices.
 
 The package includes the following action and feed:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/whisk.system/watsoniotp` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken, eventType  | Work with the Watson IoT Platform Gateway |
-| `/whisk.system/watsoniotp/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, eventType, typeId, deviceId, payload, docId | Send events to the Watson IoT Platform |
+| `/watson/iot` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken, eventType  | Work with the Watson IoT Platform Gateway |
+| `/watson/iot/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, eventType, typeId, deviceId, payload, docId | Send events to the Watson IoT Platform |
 
 
 
