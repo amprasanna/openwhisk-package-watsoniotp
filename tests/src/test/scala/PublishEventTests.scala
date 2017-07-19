@@ -29,18 +29,20 @@ class PublishEventTests
   val apiKey = credentials.get("apiKey");
   val apiToken = credentials.get("apiToken");
 
-  println("Token = ");
-  println(apiToken);
+  //These values, although currently obtained from JSON, would in actual practice be assigned
+  //val gatewayTypeId = "gatewayType";
+  //val gatewayId = "gatewayId";
+  //val gatewayToken = "password";
 
-  //These values need to be passed
-  val gatewayTypeId = "gatewayType";
-  val gatewayId = "gatewayId";
-  val gatewayToken = "password";
+  val gatewayTypeId = credentials.get("gatewayType");
+  val gatewayId = credentials.get("gatewayId");
+  val gatewayToken = credentials.get("gatewayToken");
 
   val typeId = "deviceType";
   val deviceId = "deviceId";
   val eventType = "evt";
-  val payload = ("d" -> ("temp" -> 25));
+  //val payload = ("d" -> ("temp" -> 25));
+  val payload = "temp".toJson;
 
 
   behavior of "WIoTP Package"
