@@ -18,7 +18,6 @@ var util = require('util');
 * @param {String} [params.eventType] Event Type
 
 * @param {String} [params.payload] Payload of the Event
-* @param {String} [params.docId] Doc Id of the Cloudant
 *
 * @return {Promise}
 */
