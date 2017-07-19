@@ -7,6 +7,7 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import spray.json.DefaultJsonProtocol.StringJsonFormat
 import spray.json.pimpAny
+import scala.language.postfixOps
 
 @RunWith(classOf[JUnitRunner])
 class PublishEventTests
