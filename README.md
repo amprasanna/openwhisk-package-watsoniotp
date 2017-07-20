@@ -8,15 +8,54 @@ The package includes the following action:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/watson/iotgw` | package | orgId, domain, gatewayTypeId, gatewayId, gatewayToken, eventType, key, cert  | Work with the Watson IoT Platform Gateway |
-| `/watson/iotgw/publishEvent` | action | orgId, domain, gatewayTypeId, gatewayId, gatewayToken, key, cert, eventType, typeId, deviceId, payload | Send events, from a registered gateway, to the Watson IoT Platform, on the behalf of devices |
+| `/watson/iotgw` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken, key, cert  | Work with the Watson IoT Platform Gateway |
+| `/watson/iotgw/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, key, cert, eventType, typeId, deviceId, payload | Send events, from a registered gateway, to the Watson IoT Platform, on the behalf of devices |
+
+## Creating a Watson IoT Platform Gateway package binding
+
+While creating a WIoTP Gateway package binding, you must specify the following parameters,
+
+-  `org`: WIoTP organization.
+-  `gatewayTypeId`: GatewayTypeId of the registered Gateway.
+-  `gatewayId`: Gateway Id of the registered Gateway.
+-  `gatewayToken`: Auth Token of the registered Gateway.
+
+The following is an example of creating a package binding.
+
+1. Create a Bluemix application in [Bluemix Dashboard](http://console.ng.bluemix.net).
+
+2. Initialize the IoT Service and bind the service to the Bluemix application
+
+3. Configure the [IoT Application](https://console.bluemix.net/docs/services/IoT/index.html).
+
+  Be sure to remember the `API Key` and the `API Token` of the Bluemix app you created. This is needed to create GatewayType and register a Gateway.
+
+4. Create a gateway type (say myGWType) in the Watson IoT organization and register an instance of the gateway (say myGWId).
+
+  Be sure to remember the `Gateway Token` for the registered gateway.
+
+5. Create a package binding with the `/watson/iotgw`.
+
+  ```
+  wsk package bind /watson/iotgw myGW -p org myorg -p gatewayTypeId myGWType -p gatewayId myGWId -p gatewayToken myGWToken
+  ```
+
+6. Verify that the package binding exists.
+
+  ```
+  wsk package list
+  ```
+  ```
+  packages
+  /myNamespace/myGW private binding
+  ```
 
 
 ## Publishing Device Events
 
 The `/watson/iotgw/publishEvent` action publishes events from a registered Watson IoT Platform Gateway, on the behalf of attached devices. The parameters are as follows:  
 
-- `orgId`: The organization id to which the registered gateway belongs to. For example: `-p orgId "uguhsp"`.  
+- `org`: The organization id to which the registered gateway belongs to. For example: `-p org "uguhsp"`.  
 
 - `domain`: The domain to which the registered gateway belongs to. This parameter is optional and by default points to `messaging.internetofthings.ibmcloud.com`. For example: `-p domain "messaging.internetofthings.ibmcloud.com"`.  
 
@@ -43,7 +82,7 @@ Here is an example of publishing events from the *iotgw* package.
 - Publish a device event by using the `publishEvent` action in the package binding that you created previously. Be sure to replace `/myNamespace/myGateway` with your package name.
 
   ```
-  wsk action invoke /myNamespace/myGateway/publishEvent -i --result --blocking -p orgId ORG_ID -p eventType value -p payload '{"test":"etsd"}' -p typeId myDeviceType -p deviceId 00aabbccde03_0001 -p gatewayTypeId myGatewayType -p gatewayId 00aabbccde03 -p gatewayToken "ZZZZZZ"
+  wsk action invoke /myNamespace/myGateway/publishEvent -i --result --blocking -p org ORG_ID -p eventType value -p payload '{"test":"etsd"}' -p typeId myDeviceType -p deviceId 00aabbccde03_0001 -p gatewayTypeId myGatewayType -p gatewayId 00aabbccde03 -p gatewayToken "ZZZZZZ"
   ```
   {: pre}
   ```json
