@@ -1,8 +1,8 @@
-# openwhisk-watson-iot-platform
+# openwhisk-watson-iot-platform #
 
-# This is still in experimental mode.
+# This is still in experimental mode. #
 
-The `/watson/iotgw` package enables you to send events to the IBM Watson IoT Platform on the behalf of attached devices.
+The `/watson/iotgw` package enables a Watson IoT Platform registered gateway to send events to the IBM Watson IoT Platform, on the behalf of devices attached to the Gateway.
 
 The package includes the following action:
 
@@ -11,36 +11,34 @@ The package includes the following action:
 | `/watson/iotgw` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken, key, cert  | Work with the Watson IoT Platform Gateway |
 | `/watson/iotgw/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, key, cert, eventType, typeId, deviceId, payload | Send events, from a registered gateway, to the Watson IoT Platform, on the behalf of devices |
 
-## Creating a Watson IoT Platform Gateway package binding
+## Creating a Watson IoT Platform Gateway package binding ##
 
 While creating a WIoTP Gateway package binding, you must specify the following parameters,
 
--  `org`: WIoTP organization.
+-  `org`: WIoTP organization Id.
 -  `gatewayTypeId`: GatewayTypeId of the registered Gateway.
 -  `gatewayId`: Gateway Id of the registered Gateway.
 -  `gatewayToken`: Auth Token of the registered Gateway.
 
 The following is an example of creating a package binding.
 
-1. Create a Bluemix application in [Bluemix Dashboard](http://console.ng.bluemix.net).
+1. Login to the Bluemix console](https://console.ng.bluemix.net/).
 
-2. Initialize the IoT Service and bind the service to the Bluemix application
+2. Create the [Internet of Things Platform  Service](https://console.bluemix.net/docs/services/IoT/index.html) in the Bluemix and [note the `API Key` and the `API Token`] application](https://console.bluemix.net/docs/services/IoT/platform_authorization.html#connecting-applications).
 
-3. Configure the [IoT Application](https://console.bluemix.net/docs/services/IoT/index.html).
+  Be sure to remember the `API Key` and the `API Token`. This is needed to create GatewayType and to register a Gateway.
 
-  Be sure to remember the `API Key` and the `API Token` of the Bluemix app you created. This is needed to create GatewayType and register a Gateway.
-
-4. Create a gateway type (say myGWType) in the Watson IoT organization and register an instance of the gateway (say myGWId).
+3. [Create a gateway type](https://console.bluemix.net/docs/services/IoT/gateways/dashboard.html) (say myGWType) [in the Watson IoT organization and register an instance of the gateway](https://console.bluemix.net/docs/services/IoT/gateways/dashboard.html) (say myGWId).  
 
   Be sure to remember the `Gateway Token` for the registered gateway.
 
-5. Create a package binding with the `/watson/iotgw`.
+4. Create a package binding with the `/watson/iotgw`.
 
   ```
   wsk package bind /watson/iotgw myGW -p org myorg -p gatewayTypeId myGWType -p gatewayId myGWId -p gatewayToken myGWToken
   ```
 
-6. Verify that the package binding exists.
+5. Verify that the package binding exists.
 
   ```
   wsk package list
@@ -51,7 +49,7 @@ The following is an example of creating a package binding.
   ```
 
 
-## Publishing Device Events
+## Publishing Device Events ##
 
 The `/watson/iotgw/publishEvent` action publishes events from a registered Watson IoT Platform Gateway, on the behalf of attached devices. The parameters are as follows:  
 
@@ -93,7 +91,7 @@ Here is an example of publishing events from the *iotgw* package.
   ```
 
 
-# Working with repository
+## Working with repository ##
 
 ##### Deploying the Package using `installCatalog.sh`
 
