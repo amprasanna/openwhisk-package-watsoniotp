@@ -3,7 +3,7 @@ var util = require('util');
 /**
 * @param {Object} params
 * Details of the Gateway
-* @param {String} [params.orgId] The Organization ID
+* @param {String} [params.org] The Organization ID
 * @param {String} [params.domain] Domain name of the messaging host
 * @param {String} [params.gatewayTypeId] Gateway Type ID
 * @param {String} [params.gatewayId] Gateway ID
@@ -28,21 +28,21 @@ function main(params){
        return Promise.reject(errorMsg);
    }
    // Optional param. If not defined, default messaging server will be used
-   if(params.domain === undefined) {
+   if(!params.domain) {
        params.domain = "messaging.internetofthings.ibmcloud.com";
    }
 
    return new Promise((resolve, reject) => {
      let uri = util.format(
    "https://%s.%s/api/v0002/device/types/%s/devices/%s/events/%s",
-   params.orgId, params.domain,params.typeId, params.deviceId ,
+   params.org, params.domain,params.typeId, params.deviceId ,
    params.eventType
    );
 
    let postObj = {
        headers: {
          'content-type' : 'application/json',
-         'authorization' : 'Basic ' + new Buffer('g/'+params.orgId+'/'+ params.gatewayTypeId+'/'+ params.gatewayId + ':' + params.gatewayToken).toString('base64')
+         'authorization' : 'Basic ' + new Buffer('g/'+params.org+'/'+ params.gatewayTypeId+'/'+ params.gatewayId + ':' + params.gatewayToken).toString('base64')
        },
        url: uri,
        json: params.payload
@@ -76,36 +76,40 @@ function main(params){
 *  Function to check if all the params are passed properly
 */
 function paramsCheck(params) {
-   if (params.orgId === undefined ) {
-       return ('No orgId provided');
+   if (!params.org) {
+       return ('No org provided');
    }
-   else if (params.typeId === undefined) {
+   else if (!params.typeId) {
        return 'No Device type Id provided';
    }
-   else if (params.deviceId === undefined) {
+   else if (!params.deviceId) {
        return 'No device Id provided';
    }
-   else if (params.eventType === undefined) {
+   else if (!params.eventType) {
        return 'No event Type provided';
    }
-   else if (params.gatewayTypeId === undefined) {
+   else if (!params.gatewayTypeId) {
        return 'No Gateway Type Id provided';
    }
-   else if (params.gatewayId === undefined) {
+   else if (!params.gatewayId) {
        return 'No Gateway Id provided';
    }
-   else if(params.gatewayToken === undefined){
+   else if(!params.gatewayToken){
      //in case of only certificate authentication
-     if(params.cert  && params.key){
+     if ( params.cert  && params.key ) {
        params.gatewayToken = "";
-     }else{
+     } else if(!params.cert && params.key ){
+       return 'No Gateway Client Certificate provided';
+     } else if(params.cert && !params.key ){
+       return 'No Gateway Client Certificate key provided';
+     } else {
        return 'No Gateway Token provided';
      }
    }
-   else if(params.cert === undefined && params.key !== undefined){
+   else if(!params.cert && params.key ){
      return 'No Gateway Client Certificate provided';
    }
-   else if(params.cert !== undefined && params.key === undefined){
+   else if(params.cert && !params.key ){
      return 'No Gateway Client Certificate key provided';
    }
    else if (params.payload === undefined) {
