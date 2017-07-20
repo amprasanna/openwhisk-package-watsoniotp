@@ -2,14 +2,23 @@
 
 # This is still in experimental mode.
 
+<<<<<<< HEAD
 The `/watson/iotgw` package enables you to send events to the IBM Watson IoT Platform on behalf of the attached devices.
+=======
+The `/watson/iot` package enables you to send events to the IBM Watson IoT Platform on behalf of the attached devices.
+>>>>>>> 71e4c1d458e7ee7bc31611637d1343f9ab42e4c3
 
 The package includes the following action and feed:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
+<<<<<<< HEAD
 | `/watson/iotgw` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken, eventType  | Work with the Watson IoT Platform Gateway |
 | `/watson/iotgw/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, eventType, typeId, deviceId, payload | Send events, from a registered gateway, to the Watson IoT Platform, on the behalf of devices |
+=======
+| `/watson/iot` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken, eventType  | Work with the Watson IoT Platform Gateway |
+| `/watson/iot/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, eventType, typeId, deviceId, payload, docId | Send events to the Watson IoT Platform |
+>>>>>>> 71e4c1d458e7ee7bc31611637d1343f9ab42e4c3
 
 
 
