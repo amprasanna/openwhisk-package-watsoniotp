@@ -43,10 +43,6 @@ Here is an example of publishing events from the *iotgw* package.
 - Publish a device event by using the `publishEvent` action in the package binding that you created previously. Be sure to replace `/myNamespace/myGateway` with your package name.
 
   ```
-  wsk action invoke /myNamespace/myGateway/publishEvent --blocking --result  -p url https://example.com -p text "this is my message"  -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
-  ```
-
-  ```
   wsk action invoke /myNamespace/myGateway/publishEvent -i --result --blocking -p orgId ORG_ID -p eventType value -p payload '{"test":"etsd"}' -p typeId myDeviceType -p deviceId 00aabbccde03_0001 -p gatewayTypeId myGatewayType -p gatewayId 00aabbccde03 -p gatewayToken "ZZZZZZ"
   ```
   {: pre}
