@@ -49,7 +49,7 @@ class PublishEventTests
   behavior of "WIoTP Package"
 
     it should "Publish Event action" in {
-           val name = "/watson/iot/publishEvent"
+           val name = "/watson/iot-gateway/publishEvent"
              withActivation(wsk.activation,wsk.action.invoke(name, Map("org" -> org, "domain" -> mqttHost, "gatewayTypeId" -> gatewayTypeId, "gatewayId" -> gatewayId, "gatewayToken" -> gatewayToken, "typeId" -> typeId, "deviceId" -> deviceId, "eventType" -> eventType, "payload" -> payload))){
                  _.response.result.get.toString should include ("body")
              }

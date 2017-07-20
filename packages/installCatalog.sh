@@ -21,7 +21,7 @@ fi
 AUTH="$1"
 APIHOST="$2"
 WSK_CLI="$3"
-PACKAGE_NAME="iot.gateway"
+PACKAGE_NAME="iot-gateway"
 
 # If the auth key file exists, read the key in the file. Otherwise, take the
 # first argument as the key itself.
