@@ -22,13 +22,13 @@ While creating a WIoTP Gateway package binding, you must specify the following p
 
 The following is an example of creating a package binding.
 
-1. Login to the Bluemix console](https://console.ng.bluemix.net/).
+1. [Login to the Bluemix console](https://console.ng.bluemix.net/).
 
-2. Create the [Internet of Things Platform  Service](https://console.bluemix.net/docs/services/IoT/index.html) in the Bluemix and [note the `API Key` and the `API Token`] application](https://console.bluemix.net/docs/services/IoT/platform_authorization.html#connecting-applications).
+2. Create the [Internet of Things Platform  Service](https://console.bluemix.net/docs/services/IoT/index.html) in the Bluemix and [note the `API Key` and the `API Token`] (https://console.bluemix.net/docs/services/IoT/platform_authorization.html#connecting-applications).
 
   Be sure to remember the `API Key` and the `API Token`. This is needed to create GatewayType and to register a Gateway.
 
-3. [Create a gateway type](https://console.bluemix.net/docs/services/IoT/gateways/dashboard.html) (say myGWType) [in the Watson IoT organization and register an instance of the gateway](https://console.bluemix.net/docs/services/IoT/gateways/dashboard.html) (say myGWId).  
+3. [Create a gateway type](https://console.bluemix.net/docs/services/IoT/gateways/dashboard.html) (say myGWType) in the Watson IoT organization and [register an instance of the gateway](https://console.bluemix.net/docs/services/IoT/gateways/dashboard.html) (say myGWId).  
 
   Be sure to remember the `Gateway Token` for the registered gateway.
 
