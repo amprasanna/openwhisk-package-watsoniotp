@@ -62,5 +62,5 @@ $WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "${PACKAGE_NAME}/p
 {"name":"deviceId", "required":true, "description":"Device ID of the device attached"},
 {"name":"eventType", "required":true, "description":"Type of event published"},
 {"name":"payload", "required":true, "description":"Payload of the device event"}]' \
--a sampleInput '{"deviceId":"xxxx01", "typeId":"xxxx", "payload": {"temp" : 4 }}' \
+-a sampleInput '{"deviceId":"xxxx01", "typeId":"xxxx", "eventType" : "status", "payload": {"temp" : 4 }}' \
 -a sampleOutput '{ "statusCode": 200, "statusMessage": "OK" }'
