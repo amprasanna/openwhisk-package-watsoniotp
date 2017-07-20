@@ -77,16 +77,16 @@ function main(params){
 */
 function paramsCheck(params) {
    if (!params.org) {
-       return ('No org provided');
+       return ('No Organization ID provided');
    }
    else if (!params.typeId) {
        return 'No Device type Id provided';
    }
    else if (!params.deviceId) {
-       return 'No device Id provided';
+       return 'No Device Id provided';
    }
    else if (!params.eventType) {
-       return 'No event Type provided';
+       return 'No Event Type provided';
    }
    else if (!params.gatewayTypeId) {
        return 'No Gateway Type Id provided';
