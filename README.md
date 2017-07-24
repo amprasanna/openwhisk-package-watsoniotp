@@ -2,14 +2,14 @@
 
 # Important: The IBM Watson IoT Platform Gateway package is currently offered as an experimental service. Experimental services might not be stable and can change in ways that are not compatible with earlier versions. #
 
-The `/watson/iotgw` package enables a Watson IoT Platform registered gateway to send events to Watson IoT Platform on behalf of devices that are that are in the resource group that is associated with the gateway.
+The `/watson/iot-gateway` package enables a Watson IoT Platform registered gateway to send events to Watson IoT Platform on behalf of devices that are that are in the resource group that is associated with the gateway.
 
 The package includes the following entities:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/watson/iotgw` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken, key, cert  | Work with Watson IoT Platform Gateway |
-| `/watson/iotgw/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, key, cert, eventType, typeId, deviceId, payload | Send events from a registered gateway to Watson IoT Platform on behalf of its associated devices  |
+| `/watson/iot-gateway` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken, key, cert  | Work with Watson IoT Platform Gateway |
+| `/watson/iot-gateway/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, key, cert, eventType, typeId, deviceId, payload | Send events from a registered gateway to Watson IoT Platform on behalf of its associated devices  |
 
 ## Creating a Watson IoT Platform Gateway package binding ##
 
@@ -32,10 +32,10 @@ Complete the following steps to create a package binding:
 
   **Note:** Make a note of the `Gateway Token` for the registered gateway.
 
-4. Create a package binding with the `/watson/iotgw` by using the following example command:
+4. Create a package binding with the `/watson/iot-gateway` by using the following example command:
 
   ```
-  wsk package bind /watson/iotgw myGW -p org myorg -p gatewayTypeId myGWType -p gatewayId myGWId -p gatewayToken myGWToken
+  wsk package bind /watson/iot-gateway myGW -p org myorg -p gatewayTypeId myGWType -p gatewayId myGWId -p gatewayToken myGWToken
   ```
 
 5. Verify that the package binding exists by using the following command:
@@ -51,7 +51,7 @@ Complete the following steps to create a package binding:
 
 ## Publishing Device Events ##
 
-The `/watson/iotgw/publishEvent` action publishes events from a registered Watson IoT Platform gateway, on behalf of its associated devices. The following parameters are used:  
+The `/watson/iot-gateway/publishEvent` action publishes events from a registered Watson IoT Platform gateway, on behalf of its associated devices. The following parameters are used:  
 
 - `org`: The identifier of the organization to which the registered gateway belongs, for example: `-p org "uguhsp"`.  
 
@@ -75,7 +75,7 @@ The `/watson/iotgw/publishEvent` action publishes events from a registered Watso
 
 - `payload`: The payload that the registered gateway publishes on the behalf of the device, for example: `-p payload "{'d':{'temp':38}}""`.  
 
-The following example shows how to publish events from the *iotgw* package:
+The following example shows how to publish events from the *iot-gateway* package:
 
 - Publish a device event by using the `publishEvent` action in the package binding that you created. You must replace `/myNamespace/myGateway` with your package name.
 
