@@ -40,12 +40,12 @@ echo Installing Watson IoT platform package.
 $WSK_CLI -i --apihost "$APIHOST"  package update --auth "$AUTH"  --shared yes ${PACKAGE_NAME} \
 -a description "This is the package for Watson IoT Platform Gateway." \
 -a parameters '[{"name":"org", "required":true, "bindTime":true, "description":"Organization ID"},
-{"name":"domain", "required":false, "description":"Domain of the messaging server (Optional)"},
-{"name":"gatewayTypeId", "required":true, "description":"Gateway Type ID"},
-{"name":"gatewayId", "required":true, "description":"Gateway ID"},
-{"name":"gatewayToken", "required":false, "type":"password", "description":"Token for the Gateway Registered in the platform"},
-{"name":"cert", "required":false, "description":"Gateway client certificate .pem file (Optional)"},
-{"name":"key", "required":false, "description":"Key for the client certrificate (Optional)"}]' \
+{"name":"domain", "required":false, "bindTime":true,"description":"Domain of the messaging server (Optional)"},
+{"name":"gatewayTypeId", "required":true, "bindTime":true,"description":"Gateway Type ID"},
+{"name":"gatewayId", "required":true, "bindTime":true,"description":"Gateway ID"},
+{"name":"gatewayToken", "required":false, "bindTime":true, "type":"password", "description":"Token for the Gateway Registered in the platform"},
+{"name":"cert", "required":false, "bindTime":true, "description":"Gateway client certificate .pem file (Optional)"},
+{"name":"key", "required":false, "bindTime":true, "description":"Key for the client certrificate (Optional)"}]' \
 -a prettyName "Watson IoT Platform" \
 -p bluemixServiceName "iotf-service"
 

@@ -65,7 +65,7 @@ function main(params){
              reject(response)
            }
          }else{
-             reject(error);
+             reject(error.message);
          }
        });
 
