@@ -43,9 +43,7 @@ $WSK_CLI -i --apihost "$APIHOST"  package update --auth "$AUTH"  --shared yes ${
 {"name":"domain", "required":false, "bindTime":true,"description":"Domain of the messaging server (Optional)"},
 {"name":"gatewayTypeId", "required":true, "bindTime":true,"description":"Gateway Type ID"},
 {"name":"gatewayId", "required":true, "bindTime":true,"description":"Gateway ID"},
-{"name":"gatewayToken", "required":false, "bindTime":true, "type":"password", "description":"Token for the Gateway Registered in the platform"},
-{"name":"cert", "required":false, "bindTime":true, "description":"Gateway client certificate .pem file (Optional)"},
-{"name":"key", "required":false, "bindTime":true, "description":"Key for the client certrificate (Optional)"}]' \
+{"name":"gatewayToken", "required":false, "bindTime":true, "type":"password", "description":"Token for the Gateway Registered in the platform"}]' \
 -a prettyName "Watson IoT Platform" \
 -p bluemixServiceName "iotf-service"
 
@@ -56,8 +54,6 @@ $WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "${PACKAGE_NAME}/p
 {"name":"domain", "required":false,  "description":"Domain of the messaging server"},
 {"name":"gatewayTypeId", "required":true, "description":"Gateway Type ID"},
 {"name":"gatewayId", "required":true, "description":"Gateway ID"},
-{"name":"cert", "required":false, "description":"Gateway client certificate .pem file"},
-{"name":"key", "required":false, "description":"Key for the client certrificate"},
 {"name":"typeId", "required":true, "description":"Type ID of the device attached"},
 {"name":"deviceId", "required":true, "description":"Device ID of the device attached"},
 {"name":"eventType", "required":true, "description":"Type of event published"},

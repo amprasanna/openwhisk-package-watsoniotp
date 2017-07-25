@@ -8,9 +8,6 @@ var util = require('util');
 * @param {String} [params.gatewayTypeId] Gateway Type ID
 * @param {String} [params.gatewayId] Gateway ID
 * @param {String} [params.gatewayToken] Gateway Token
-* [For advance security]
-* @param {String} [params.cert] Gateway client certificate .pem file
-* @param {String} [params.key] Gateway key for the client certrificate
 *
 * Details of the end device
 * @param {String} [params.typeId] Device Type Id
@@ -47,14 +44,6 @@ function main(params){
        url: uri,
        json: params.payload
      };
-   //Optional values no need to validate
-   if(params.cert && params.key ){
-       postObj.agentOptions= {
-         cert: params.cert ,
-         key: params.key,
-         securityOptions: 'SSL_OP_NO_SSLv3'
-       }
-     }
 
    request.post(postObj, function(error, response, body){
          if(!error){
@@ -95,22 +84,7 @@ function paramsCheck(params) {
        return 'No Gateway Id provided';
    }
    else if(!params.gatewayToken){
-     //in case of only certificate authentication
-     if ( params.cert  && params.key ) {
-       params.gatewayToken = "";
-     } else if(!params.cert && params.key ){
-       return 'No Gateway Client Certificate provided';
-     } else if(params.cert && !params.key ){
-       return 'No Gateway Client Certificate key provided';
-     } else {
        return 'No Gateway Token provided';
-     }
-   }
-   else if(!params.cert && params.key ){
-     return 'No Gateway Client Certificate provided';
-   }
-   else if(params.cert && !params.key ){
-     return 'No Gateway Client Certificate key provided';
    }
    else if (params.payload === undefined) {
        return 'No Payload provided';

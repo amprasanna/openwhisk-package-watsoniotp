@@ -8,8 +8,8 @@ The package includes the following entities:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/watson/iot-gateway` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken, key, cert  | Work with Watson IoT Platform Gateway |
-| `/watson/iot-gateway/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, key, cert, eventType, typeId, deviceId, payload | Send events from a registered gateway to Watson IoT Platform on behalf of its associated devices  |
+| `/watson/iot-gateway` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken | Work with Watson IoT Platform Gateway |
+| `/watson/iot-gateway/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, eventType, typeId, deviceId, payload | Send events from a registered gateway to Watson IoT Platform on behalf of its associated devices  |
 
 ## Creating a Watson IoT Platform Gateway package binding ##
 
@@ -62,10 +62,6 @@ The `/watson/iot-gateway/publishEvent` action publishes events from a registered
 - `gatewayId`: The gateway identifier of the registered gateway. The identifier must be unique within an organization for a given gateway type, for example: `-p gatewayId "00aabbccde03"`.  
 
 - `gatewayToken`: The token (password) that is used by the registered gateway to connect to Watson IoT Platform, for example: `-p gatewayToken "ZZZZZZ"`.  
-
-- `key`: The private key of the registered gateway. The key is used for communicating by using client certificate exchange in TLS. This parameter is optional, for example: `-p key "XXXXXXXXXXXXXXX"`.  
-
-- `cert`: The public certificate of the registered gateway. The public certificate is used for communicating by using client certificate exchange in TLS. This parameter is optional, for example: `-p cert "YYYYYYYYYYYYYY"`.  
 
 - `eventType`: The event type which the registered gateway publishes events to on the behalf of its associated devices, for example: `-p eventType "evt"`.  
 
