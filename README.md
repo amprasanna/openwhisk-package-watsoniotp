@@ -2,7 +2,7 @@
 
 # Important: The IBM Watson IoT Platform Gateway package is currently offered as an experimental service. Experimental services might not be stable and can change in ways that are not compatible with earlier versions. #
 
-The `/watson-iot/iot-gateway` package enables a Watson IoT Platform registered gateway to send events to Watson IoT Platform on behalf of devices that are that are in the resource group that is associated with the gateway.
+The `/watson-iot/iot-gateway` package enables a Watson IoT Platform registered gateway to send events to Watson IoT Platform on behalf of devices that are in the resource group that is associated with the gateway.
 
 The package includes the following entities:
 
