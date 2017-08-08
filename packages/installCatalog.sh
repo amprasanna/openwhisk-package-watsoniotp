@@ -40,17 +40,16 @@ echo Installing Watson IoT platform package.
 $WSK_CLI -i --apihost "$APIHOST"  package update --auth "$AUTH"  --shared yes ${PACKAGE_NAME} \
 -a description "This is the package for Watson IoT Platform Gateway." \
 -a parameters '[{"name":"org", "required":true, "bindTime":true, "description":"Organization ID"},
-{"name":"domain", "required":false, "bindTime":true,"description":"Domain of the messaging server (Optional)"},
 {"name":"gatewayTypeId", "required":true, "bindTime":true,"description":"Gateway Type ID"},
 {"name":"gatewayId", "required":true, "bindTime":true,"description":"Gateway ID"},
-{"name":"gatewayToken", "required":false, "bindTime":true, "type":"password", "description":"Token for the Gateway Registered in the platform"}]' \
+{"name":"gatewayToken", "required":true, "bindTime":true, "type":"password", "description":"Token for the Gateway Registered in the platform"}]' \
 -a prettyName "Watson IoT Platform" \
 -p bluemixServiceName "iotf-service"
 
 $WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "${PACKAGE_NAME}/publishEvent" "$PACKAGE_HOME/actions/publishEvent.js" \
 -a description 'Send event to the Watson IoT Plaform as a IoT Gateway' \
 -a parameters '[ {"name":"org", "required":true, "bindTime":true, "description":"Organization ID"},
-{"name":"gatewayToken", "required":false, "type":"password", "description":"Token for the Gateway Registered in the platform"},
+{"name":"gatewayToken", "required":true, "type":"password", "description":"Token for the Gateway Registered in the platform"},
 {"name":"domain", "required":false,  "description":"Domain of the messaging server"},
 {"name":"gatewayTypeId", "required":true, "description":"Gateway Type ID"},
 {"name":"gatewayId", "required":true, "description":"Gateway ID"},
@@ -58,5 +57,5 @@ $WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "${PACKAGE_NAME}/p
 {"name":"deviceId", "required":true, "description":"Device ID of the device attached"},
 {"name":"eventType", "required":true, "description":"Type of event published"},
 {"name":"payload", "required":true, "description":"Payload of the device event"}]' \
--a sampleInput '{"deviceId":"xxxx01", "typeId":"xxxx", "eventType" : "status", "payload": {"temp" : 4 }}' \
+-a sampleInput '{"domain" : "messaging.internetofthings.ibmcloud.com", "deviceId":"xxxx01", "typeId":"xxxx", "eventType" : "status", "payload": {"temp" : 4 }}' \
 -a sampleOutput '{ "statusCode": 200, "statusMessage": "OK" }'
