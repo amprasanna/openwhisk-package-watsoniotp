@@ -8,7 +8,7 @@ The package includes the following entities:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/watson-iot/iot-gateway` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken | Work with Watson IoT Platform Gateway |
+| `/watson-iot/iot-gateway` | package | org, gatewayTypeId, gatewayId, gatewayToken | Work with Watson IoT Platform Gateway |
 | `/watson-iot/iot-gateway/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, eventType, typeId, deviceId, payload | Send events from a registered gateway to Watson IoT Platform on behalf of its associated devices  |
 
 ## Creating a Watson IoT Platform Gateway package binding ##
