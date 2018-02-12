@@ -1,26 +1,25 @@
 #!/bin/bash
-# author : Jeffrey Dare
+# author : Jeffrey Dare, Amit M Mangalvedkar
 #
 # use the command line interface to install standard actions deployed
 # automatically
 #
 # To run this command
-# ./installCatalog.sh  <AUTH> <APIHOST> <WSK_CLI>
-# AUTH and APIHOST are found in $HOME/.wskprops
-# WSK_CLI="$OPENWHISK_HOME/bin/wsk"
+# ./installCatalog.sh  <AUTH> <APIHOST> <IBM_CLOUD_CLI>
+# IBM_CLOUD_CLI="$OPENWHISK_HOME/bin/bx"
 
 set -e
 set -x
 
 if [ $# -eq 0 ]
 then
-echo "Usage: ./installCatalog.sh <authkey> <apihost> <pathtowskcli>"
+echo "Usage: ./installCatalog.sh <authkey> <apihost> <pathtobxcli>"
 exit
 fi
 
 AUTH="$1"
 APIHOST="$2"
-WSK_CLI="$3"
+IBM_CLOUD_CLI="$3"
 PACKAGE_NAME="iot-gateway"
 
 # If the auth key file exists, read the key in the file. Otherwise, take the
@@ -37,7 +36,7 @@ export WSK_CONFIG_FILE= # override local property file to avoid namespace clashe
 
 echo Installing Watson IoT platform package.
 
-$WSK_CLI -i --apihost "$APIHOST"  package update --auth "$AUTH"  --shared yes ${PACKAGE_NAME} \
+$IBM_CLOUD_CLI -i --apihost "$APIHOST"  package update --auth "$AUTH"  --shared yes ${PACKAGE_NAME} \
 -a description "This is the package for Watson IoT Platform Gateway." \
 -a parameters '[{"name":"org", "required":true, "bindTime":true, "description":"Organization ID"},
 {"name":"gatewayTypeId", "required":true, "bindTime":true,"description":"Gateway Type ID"},
@@ -46,7 +45,7 @@ $WSK_CLI -i --apihost "$APIHOST"  package update --auth "$AUTH"  --shared yes ${
 -a prettyName "Watson IoT Platform" \
 -p bluemixServiceName "iotf-service"
 
-$WSK_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "${PACKAGE_NAME}/publishEvent" "$PACKAGE_HOME/actions/publishEvent.js" \
+$IBM_CLOUD_CLI -i --apihost "$APIHOST" action update --auth "$AUTH" "${PACKAGE_NAME}/publishEvent" "$PACKAGE_HOME/actions/publishEvent.js" \
 -a description 'Send event to the Watson IoT Plaform as a IoT Gateway' \
 -a parameters '[ {"name":"org", "required":true, "bindTime":true, "description":"Organization ID"},
 {"name":"gatewayToken", "required":true, "type":"password", "description":"Token for the Gateway Registered in the platform"},

@@ -8,7 +8,7 @@ The package includes the following entities:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/watson-iot/iot-gateway` | package | org, gatewayTypeId, gatewayId, gatewayToken | Work with Watson IoT Platform Gateway |
+| `/watson-iot/iot-gateway` | package | org, domain, gatewayTypeId, gatewayId, gatewayToken | Work with Watson IoT Platform Gateway |
 | `/watson-iot/iot-gateway/publishEvent` | action | org, domain, gatewayTypeId, gatewayId, gatewayToken, eventType, typeId, deviceId, payload | Send events from a registered gateway to Watson IoT Platform on behalf of its associated devices  |
 
 ## Creating a Watson IoT Platform Gateway package binding ##
@@ -22,11 +22,11 @@ To create a Watson IoT Platform Gateway package binding, you must specify the fo
 
 Complete the following steps to create a package binding:
 
-1. [Login to the Bluemix console](https://console.ng.bluemix.net/).
+1. [Login to the IBM Cloud console](https://console.ng.bluemix.net/).
 
-2. Create the [Internet of Things Platform  Service](https://console.bluemix.net/docs/services/IoT/index.html) in Bluemix and [note the `API Key` and the `API Token`] (https://console.bluemix.net/docs/services/IoT/platform_authorization.html#connecting-applications).
+2. Create the [Internet of Things Platform  Service](https://console.bluemix.net/docs/services/IoT/index.html) in IBM Cloud and [note the `API Key` and the `Auth Token`] (https://console.bluemix.net/docs/services/IoT/platform_authorization.html#connecting-applications).
 
-  **Note:** Make a note of the `API Key` and the `API Token`. This information is required to create a gateway type and to register a gateway.
+  **Note:** Make a note of the `API Key` and the `Auth Token`. This information is required to create a gateway type and to register a gateway.
 
 3. [Create a gateway type](https://console.bluemix.net/docs/services/IoT/gateways/dashboard.html), for example, *myGWType* in your Watson IoT organization and [register an instance of the gateway](https://console.bluemix.net/docs/services/IoT/gateways/dashboard.html), for example, *myGWId*.  
 
@@ -35,17 +35,23 @@ Complete the following steps to create a package binding:
 4. Create a package binding with the `/watson-iot/iot-gateway` by using the following example command:
 
   ```
-  wsk package bind /watson-iot/iot-gateway myGW -p org myorg -p gatewayTypeId myGWType -p gatewayId myGWId -p gatewayToken myGWToken
+  bx wsk package bind /watson-iot/iot-gateway myGW -p org myorg -p gatewayTypeId myGWType -p gatewayId myGWId -p gatewayToken myGWToken
+  where
+  myGW denotes the package name
+  myorg denotes the Watson IoT Platform Organization
+  myGWTypeId denotes the GatewayType
+  myGWId denotes the GatewayType Id
+  myGWToken denotes the GatewayToken
   ```
 
 5. Verify that the package binding exists by using the following command:
 
   ```
-  wsk package list
+  bx wsk package list
   ```
   ```
   packages
-  /myNamespace/myGW private binding
+  /myNamespace/myGW private
   ```
 
 
@@ -76,7 +82,7 @@ The following example shows how to publish events from the *iot-gateway* package
 - Publish a device event by using the `publishEvent` action in the package binding that you created. You must replace `/myNamespace/myGateway` with your package name.
 
   ```
-  wsk action invoke /myNamespace/myGateway/publishEvent -i --result --blocking -p org ORG_ID -p eventType value -p payload '{"test":"etsd"}' -p typeId myDeviceType -p deviceId 00aabbccde03_0001 -p gatewayTypeId myGatewayType -p gatewayId 00aabbccde03 -p gatewayToken "ZZZZZZ"
+  bx wsk action invoke /myNamespace/myGateway/publishEvent -i --result --blocking -p org ORG_ID -p eventType value -p payload '{"test":"etsd"}' -p typeId myDeviceType -p deviceId 00aabbccde03_0001 -p gatewayTypeId myGatewayType -p gatewayId 00aabbccde03 -p gatewayToken "ZZZZZZ"
   ```
   {: pre}
   ```json
@@ -86,6 +92,9 @@ The following example shows how to publish events from the *iot-gateway* package
     }
   ```
 
+## CLI Help showing multiple operations ##  
+Get various command options available with the CLI by executing the following command  
+`bx wsk package get /watson-iot/iot-gateway --summary`  
 
 ## Working with the repository ##
 
