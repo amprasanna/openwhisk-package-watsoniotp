@@ -1,7 +1,5 @@
 # openwhisk-watson-iot-platform #
 
-## Important: The IBM Watson IoT Platform Gateway package is currently offered as a beta. ##
-
 The `/watson-iot/iot-gateway` package enables a Watson IoT Platform registered gateway to send events to Watson IoT Platform on behalf of devices that are in the resource group that is associated with the gateway.
 
 The package includes the following entities:
@@ -103,4 +101,4 @@ Get various command options available with the CLI by executing the following co
 1. `git clone https://github.com/ibm-watson-iot/openwhisk-package-watsoniotp`
 2. `cd openwhisk-package-watsoniotp/packages`
 3. `./installCatalog.sh AUTH APIHOST WSK_CLI`
-   where AUTH is your authorization key, APIHOST is the OpenWhisk hostname, and WSK_CLI is the location of the Openwhisk CLI binary.
+   where AUTH is your authorization key, APIHOST is the IBM Cloud Functions hostname, and WSK_CLI is the location of the IBM Cloud Functions CLI binary.

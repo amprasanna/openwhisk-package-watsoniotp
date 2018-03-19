@@ -1,6 +1,6 @@
 /** author : Amit M Mangalvedkar
  *
- * Code to test Watson IoT Gateway Package for OpenWhisk
+ * Code to test Watson IoT Gateway Package for IBM Cloud Functions
  * This code publishes an event on the behalf of a device attached to a registered Gateway
  */
 
